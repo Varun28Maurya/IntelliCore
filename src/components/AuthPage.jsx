@@ -131,7 +131,6 @@ const Login = ({ onNavigate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("role", "LLM Engineer"); 
     onNavigate('2fa');
   };
 
@@ -532,3 +531,4 @@ export default function App() {
     </div>
   );
 }
+
