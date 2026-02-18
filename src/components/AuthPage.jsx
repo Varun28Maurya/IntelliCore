@@ -400,13 +400,28 @@ const TwoFactorVerification = ({ onNavigate }) => {
 
       // 🔥 ADD THIS
       setTimeout(() => {
-        const role = localStorage.getItem("role");
+        const role = localStorage.getItem("role") || "Executive";
 
-        if (role === "Executive") onNavigate("executive");
-        if (role === "Risk Officer") onNavigate("risk");
-        if (role === "Data Scientist") onNavigate("datascientist");
-        if (role === "LLM Engineer") onNavigate("llm");
-        if (role === "AIOps Engineer") onNavigate("aiops");
+switch (role) {
+  case "Executive":
+    onNavigate("executive");
+    break;
+  case "Risk Officer":
+    onNavigate("risk");
+    break;
+  case "Data Scientist":
+    onNavigate("datascientist");
+    break;
+  case "LLM Engineer":
+    onNavigate("llm");
+    break;
+  case "AIOps Engineer":
+    onNavigate("aiops");
+    break;
+  default:
+    onNavigate("executive");
+}
+
 
       }, 1500);
 
@@ -531,4 +546,3 @@ export default function App() {
     </div>
   );
 }
-
