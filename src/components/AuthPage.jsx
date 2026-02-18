@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
+
 import {
   Shield,
   Key,
@@ -371,7 +372,7 @@ const TwoFactorVerification = ({ onNavigate }) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const inputs = useRef([]);
-
+  const navigate = useNavigate();
 
   const mockOTP = "123456";
 
@@ -404,23 +405,24 @@ const TwoFactorVerification = ({ onNavigate }) => {
 
 switch (role) {
   case "Executive":
-    onNavigate("executive");
+    navigate("/executive");
     break;
   case "Risk Officer":
-    onNavigate("risk");
+    navigate("/risk");
     break;
   case "Data Scientist":
-    onNavigate("datascientist");
+    navigate("/datascientist");
     break;
   case "LLM Engineer":
-    onNavigate("llm");
+    navigate("/llm");
     break;
   case "AIOps Engineer":
-    onNavigate("aiops");
+    navigate("/aiops");
     break;
   default:
-    onNavigate("executive");
+    navigate("/executive");
 }
+
 
 
       }, 1500);
