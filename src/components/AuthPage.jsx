@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -14,8 +14,7 @@ import {
   EyeOff,
   CheckCircle2,
   AlertCircle,
-  Briefcase,
-  Zap
+  Briefcase
 } from 'lucide-react';
 
 /**
@@ -126,13 +125,14 @@ const PrimaryButton = ({ children, onClick, disabled, type = "button", loading }
 
 // --- VIEWS ---
 
-const Login = ({ onNavigate }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onNavigate('2fa');
+    navigate("/2fa");
   };
 
   return (
@@ -167,7 +167,7 @@ const Login = ({ onNavigate }) => {
             </label>
             <button
               type="button"
-              onClick={() => onNavigate('forgot')}
+              onClick={() => navigate('/forgot')}
               className="text-blue-600 font-bold hover:text-blue-700 transition-colors"
             >
               Recover Access
@@ -183,7 +183,7 @@ const Login = ({ onNavigate }) => {
         <p className="text-slate-400 text-xs">
           New to the core?{' '}
           <button
-            onClick={() => onNavigate('signup')}
+            onClick={() => navigate('/signup')}
             className="text-blue-600 font-bold hover:underline"
           >
             Create Workspace
@@ -194,7 +194,8 @@ const Login = ({ onNavigate }) => {
   );
 };
 
-const Signup = ({ onNavigate }) => {
+const Signup = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', role: '' });
   const roles = ['Executive', 'Risk Officer', 'Data Scientist', 'LLM Engineer', 'AIOps Engineer'];
 
@@ -202,12 +203,12 @@ const Signup = ({ onNavigate }) => {
     <CardWrapper
       title="Join IntelliCore"
       subtitle="Initialize your professional observability profile"
-      onBack={() => onNavigate('login')}
+      onBack={() => navigate('/login')}
     >
       <form className="space-y-4" onSubmit={(e) => {
         e.preventDefault();
         localStorage.setItem("role", form.role);  // 🔥 ADD THIS
-        onNavigate('login');
+        navigate('/login');
       }}
       >
         <Input
@@ -264,7 +265,8 @@ const Signup = ({ onNavigate }) => {
   );
 };
 
-const ForgotPassword = ({ onNavigate }) => {
+const ForgotPassword = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -280,7 +282,7 @@ const ForgotPassword = ({ onNavigate }) => {
           <p className="text-slate-500 text-sm leading-relaxed px-4">
             If <span className="font-bold text-slate-900">{email}</span> is in our core database, you will receive a recovery relay.
           </p>
-          <PrimaryButton onClick={() => onNavigate('login')}>
+          <PrimaryButton onClick={() => navigate('/login')}>
             Return to Terminal
           </PrimaryButton>
         </div>
@@ -292,7 +294,7 @@ const ForgotPassword = ({ onNavigate }) => {
     <CardWrapper
       title="Recover Access"
       subtitle="Identity verification required for credential override"
-      onBack={() => onNavigate('login')}
+      onBack={() => navigate('/login')}
     >
       <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
         <Input
@@ -312,7 +314,8 @@ const ForgotPassword = ({ onNavigate }) => {
   );
 };
 
-const ResetPassword = ({ onNavigate }) => {
+const ResetPassword = () => {
+  const navigate = useNavigate();
   const [pass, setPass] = useState('');
   const [confirm, setConfirm] = useState('');
   const [success, setSuccess] = useState(false);
@@ -327,7 +330,7 @@ const ResetPassword = ({ onNavigate }) => {
             </div>
           </div>
           <p className="text-slate-500 text-sm">Your access credentials have been synchronized across all IntelliCore nodes.</p>
-          <PrimaryButton onClick={() => onNavigate('login')}>
+          <PrimaryButton onClick={() => navigate('/login')}>
             Login to Terminal
           </PrimaryButton>
         </div>
@@ -367,7 +370,7 @@ const ResetPassword = ({ onNavigate }) => {
   );
 };
 
-const TwoFactorVerification = ({ onNavigate }) => {
+const TwoFactorVerification = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -454,7 +457,7 @@ switch (role) {
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.15s]" />
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" />
           </div>
-          <button onClick={() => onNavigate('login')} className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] hover:text-slate-900 transition-colors">
+          <button onClick={() => navigate('/login')} className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] hover:text-slate-900 transition-colors">
             Terminate Session
           </button>
         </div>
@@ -466,7 +469,7 @@ switch (role) {
     <CardWrapper
       title="Identity Challenge"
       subtitle="Secondary verification required. Enter the code sent to your relay."
-      onBack={() => onNavigate('login')}
+      onBack={() => navigate('/login')}
     >
       <div className="space-y-10">
         <div className="flex justify-between gap-2 px-1">
@@ -510,41 +513,5 @@ switch (role) {
   );
 };
 
-// --- MAIN APPLICATION ENTRY ---
-
-export default function App() {
-  const [view, setView] = useState('login');
-
-  const renderView = () => {
-    switch (view) {
-      case 'login': return <Login onNavigate={setView} />;
-      case 'signup': return <Signup onNavigate={setView} />;
-      case 'forgot': return <ForgotPassword onNavigate={setView} />;
-      case 'reset': return <ResetPassword onNavigate={setView} />;
-      case '2fa': return <TwoFactorVerification onNavigate={setView} />;
-
-      case 'executive': return <div>Executive Dashboard</div>;
-      case 'llm': return <div>LLM Dashboard</div>;
-      case 'risk': return <div>Risk Dashboard</div>;
-      case 'datascientist': return <div>Data Scientist Dashboard</div>;
-      case 'aiops': return <div>AIOps Dashboard</div>;
-
-      default: return <Login onNavigate={setView} />;
-    }
-  };
-
-
-  return (
-    <div className="selection:bg-blue-600 selection:text-white">
-      {renderView()}
-
-      {/* Infrastructure Footer */}
-      <div className="fixed bottom-8 w-full flex justify-center pointer-events-none select-none">
-        <div className="flex items-center space-x-4 bg-white/5 backdrop-blur-sm px-6 py-2 rounded-full border border-white/5">
-          <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">IntelliCore Infrastructure</p>
-          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-        </div>
-      </div>
-    </div>
-  );
-}
+export default Login;
+export { Login, Signup, ForgotPassword, ResetPassword, TwoFactorVerification };
