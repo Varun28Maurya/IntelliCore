@@ -131,6 +131,7 @@ const Login = ({ onNavigate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem("role", "LLM Engineer"); 
     onNavigate('2fa');
   };
 
@@ -203,7 +204,12 @@ const Signup = ({ onNavigate }) => {
       subtitle="Initialize your professional observability profile"
       onBack={() => onNavigate('login')}
     >
-      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); onNavigate('login'); }}>
+      <form className="space-y-4" onSubmit={(e) => {
+        e.preventDefault();
+        localStorage.setItem("role", form.role);  // 🔥 ADD THIS
+        onNavigate('login');
+      }}
+      >
         <Input
           label="Full Name"
           placeholder="Commander Data"
@@ -366,7 +372,7 @@ const TwoFactorVerification = ({ onNavigate }) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const inputs = useRef([]);
-  const navigate = useNavigate();
+
 
   const mockOTP = "123456";
 
@@ -395,8 +401,16 @@ const TwoFactorVerification = ({ onNavigate }) => {
 
       // 🔥 ADD THIS
       setTimeout(() => {
-        navigate("/executive");
+        const role = localStorage.getItem("role");
+
+        if (role === "Executive") onNavigate("executive");
+        if (role === "Risk Officer") onNavigate("risk");
+        if (role === "Data Scientist") onNavigate("datascientist");
+        if (role === "LLM Engineer") onNavigate("llm");
+        if (role === "AIOps Engineer") onNavigate("aiops");
+
       }, 1500);
+
 
     } else {
       setError(true);
@@ -450,8 +464,8 @@ const TwoFactorVerification = ({ onNavigate }) => {
               onChange={(e) => handleChange(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
               className={`w-full h-16 text-center text-3xl font-black rounded-2xl border-2 outline-none transition-all duration-300 ${error
-                  ? 'border-red-200 bg-red-50 text-red-600 focus:border-red-500'
-                  : 'border-slate-50 bg-slate-50 focus:border-blue-600 focus:bg-white focus:ring-8 focus:ring-blue-600/5'
+                ? 'border-red-200 bg-red-50 text-red-600 focus:border-red-500'
+                : 'border-slate-50 bg-slate-50 focus:border-blue-600 focus:bg-white focus:ring-8 focus:ring-blue-600/5'
                 }`}
             />
           ))}
@@ -492,9 +506,17 @@ export default function App() {
       case 'forgot': return <ForgotPassword onNavigate={setView} />;
       case 'reset': return <ResetPassword onNavigate={setView} />;
       case '2fa': return <TwoFactorVerification onNavigate={setView} />;
+
+      case 'executive': return <div>Executive Dashboard</div>;
+      case 'llm': return <div>LLM Dashboard</div>;
+      case 'risk': return <div>Risk Dashboard</div>;
+      case 'datascientist': return <div>Data Scientist Dashboard</div>;
+      case 'aiops': return <div>AIOps Dashboard</div>;
+
       default: return <Login onNavigate={setView} />;
     }
   };
+
 
   return (
     <div className="selection:bg-blue-600 selection:text-white">
