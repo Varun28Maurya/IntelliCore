@@ -1,4 +1,4 @@
-#IntelliCore  
+# IntelliCore  
 ## Enterprise AI Observability & Governance Platform
 
 IntelliCore is a unified AI observability and governance platform designed for financial institutions to monitor, manage, and govern both Traditional Machine Learning (ML) systems and Large Language Models (LLMs).
@@ -7,7 +7,7 @@ The platform delivers structured, role-based intelligence through real-time moni
 
 ---
 
-#Executive Summary
+# Executive Summary
 
 Financial institutions increasingly depend on:
 
@@ -26,13 +26,13 @@ However, AI monitoring is often fragmented across teams and tools, resulting in:
 
 ---
 
-#Role-Based Access Architecture (RBAC)
+# Role-Based Access Architecture (RBAC)
 
 IntelliCore is structured around real-world enterprise roles to ensure clarity, accountability, and governance.
 
 ---
 
-##1. Data Scientist  
+## 1. Data Scientist  
 **Focus:** Traditional ML Monitoring & Optimization  
 
 ### Responsibilities
@@ -50,7 +50,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-##2. LLM Engineer  
+## 2. LLM Engineer  
 **Focus:** Large Language Model Observability  
 
 ### Responsibilities
@@ -68,7 +68,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-##3. AI Operations (AIOps)  
+## 3. AI Operations (AIOps)  
 **Focus:** Infrastructure & Deployment Governance  
 
 ### Responsibilities
@@ -86,7 +86,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-##4. Executive Lead  
+## 4. Executive Lead  
 **Focus:** Strategic AI Oversight  
 
 ### Responsibilities
@@ -104,7 +104,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-##5. Risk Officer  
+## 5. Risk Officer  
 **Focus:** Compliance, Audit & Risk Governance  
 
 ### Responsibilities
@@ -122,16 +122,16 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-#Core Platform Modules
+# Core Platform Modules
 
-##ML Monitoring
+## ML Monitoring
 - Accuracy Tracking  
 - Precision / Recall / F1 Monitoring  
 - Data Drift Detection  
 - Bias & Fairness Metrics  
 - Model Version Control  
 
-##LLM Observability
+## LLM Observability
 - Latency Monitoring  
 - Token Usage & Cost Analytics  
 - Cost per Request Tracking  
@@ -139,14 +139,14 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 - Prompt Success Metrics  
 - Safety & Policy Violation Alerts  
 
-##Governance & Risk
+## Governance & Risk
 - Compliance Status Dashboard  
 - Enterprise Risk Scoring  
 - Audit Trail Simulation  
 - Policy Violation Alerts  
 - Human-in-the-Loop Tracking  
 
-##Alert & Incident Center
+## Alert & Incident Center
 - Drift Alerts  
 - Cost Spike Notifications  
 - Bias Warnings  
@@ -155,7 +155,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-#Technology Stack
+# Technology Stack
 
 ## Frontend
 - React.js (JSX)
@@ -174,7 +174,7 @@ IntelliCore is structured around real-world enterprise roles to ensure clarity, 
 
 ---
 
-#Security & Enterprise Architecture
+# Security & Enterprise Architecture
 
 - Role-Based Access Control (RBAC)
 - Modular dashboard isolation per role
@@ -187,7 +187,7 @@ IntelliCore is designed to align with financial institution security expectation
 
 ---
 
-#Key Value Propositions
+# Key Value Propositions
 
 - Unified ML + LLM monitoring  
 - Improved regulatory compliance visibility  
@@ -198,7 +198,7 @@ IntelliCore is designed to align with financial institution security expectation
 
 ---
 
-#Roadmap & Future Enhancements
+# Roadmap & Future Enhancements
 
 - Predictive AI failure detection  
 - Automated retraining triggers  
@@ -209,7 +209,7 @@ IntelliCore is designed to align with financial institution security expectation
 
 ---
 
-#Development Team
+# Development Team
 
 - Varun Maurya  
 - Prakash Mandal  
