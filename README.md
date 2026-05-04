@@ -216,7 +216,7 @@ IntelliCore is designed to align with financial institution security expectation
 
 ---
 
-# 📌 Disclaimer
+# Disclaimer
 
 This project is a prototype enterprise AI observability dashboard built for architectural demonstration purposes.  
 It simulates real-world banking AI governance environments using mock data.
